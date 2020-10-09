@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: cadastro-veiculos
+  datasource:
+    url: jdbc:mysql://tinnova-veiculos.chkg8ypjguo6.sa-east-1.rds.amazonaws.com/tinnova
+    username: tinnova
+    password: ENC(01m3M9w+EE4DopgZbzV2TQ5HN3SrGzhY)
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8077
+
+jasypt:
+  encryptor:
+    password: tinnovaPass
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator

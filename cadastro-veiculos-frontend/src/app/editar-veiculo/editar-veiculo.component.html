@@ -1,0 +1,40 @@
+<form id="form-veiculo" (ngSubmit)="atualizarVeiculo()" [formGroup]="veiculoForm">
+  <mat-grid-list cols="2" rowHeight="75px">
+    <mat-grid-tile colspan="2">
+      <mat-form-field appearance="outline">
+        <mat-label>Veículo</mat-label>
+        <input matInput formControlName="veiculo" placeholder="Veículo">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca" placeholder="Marca">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
+        <input matInput formControlName="ano" placeholder="Ano"  type="number">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-form-field appearance="outline" class="descricao-veiculo">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput formControlName="descricao" placeholder="Descrição"></textarea>
+  </mat-form-field>
+
+  <label id="radio-vendido-label" class="radio-vendido-label">Carro vendido?</label>
+  <mat-radio-group formControlName="vendido" aria-labelledby="radio-vendido-label">
+    <mat-radio-button value=true>Sim</mat-radio-button>
+    <mat-radio-button value=false>Não</mat-radio-button>
+  </mat-radio-group>
+
+  <div class="div-btn-save">
+    <button mat-raised-button color="primary">Salvar</button>
+  </div>
+
+</form>

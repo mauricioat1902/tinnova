@@ -1,0 +1,52 @@
+<mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+  <ng-container matColumnDef="veiculo">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Veículo </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.veiculo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="marca">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Marca </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.marca}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ano">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Ano </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.ano}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="descricao">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Descricao </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.descricao}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="vendido">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Vendido </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.vendido ? 'SIM' : 'NÃO'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="criacao">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Criação </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.created}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="atualizacao">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Atualização </mat-header-cell>
+    <mat-cell *matCellDef="let veiculo"> {{veiculo.updated}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="edicao" cdkColumnDef="edicao">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let veiculo">
+      <a mat-icon-button color="accent" routerLinkActive="active" (click)="abrirEdicaoVeiculo(veiculo)">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button mat-icon-button color="warn" (click)="deletarVeiculo(veiculo.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>

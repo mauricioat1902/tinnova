@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-grid-tile .mat-form-field {
+  width: 100%;
+}
+.div-btn-save {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mat-column-edicao {
+  flex: 0 0 100px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.descricao-veiculo {
+  width: 100%;
+}
+.radio-vendido-label {
+  margin-right: 16px;
+}
+.text-center {
+  text-align: center;
+}
+.text-center > .mat-list-item-content {
+  justify-content: center;
+}
+.mat-item-border {
+  border-bottom: 1px solid lightgray;
+  padding-right: 30px;
+  padding-left: 30px;
+}

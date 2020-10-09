@@ -1,0 +1,93 @@
+<mat-toolbar color="primary">
+  <span>Cadastro de Veículos</span>
+</mat-toolbar>
+<section class="principal">
+  <mat-card>
+    <mat-tab-group>
+      <mat-tab label="Novo">
+        <section class="tab">
+          <app-novo-veiculo></app-novo-veiculo>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Lista">
+        <section class="tab">
+          <app-lista-veiculos></app-lista-veiculos>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Nº Veículos não vendidos">
+        <section class="tab text-center">
+          <h1>{{ numeroVeiculosNaoVendidos }}</h1>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Distribuição de veículos por década">
+        <section class="tab">
+          <mat-list role="list">
+            <mat-list-item *ngFor="let veiculoPorDecada of veiculosPorDecada" class="text-center mat-item-border">
+              {{veiculoPorDecada.decada}} - {{veiculoPorDecada.numeroVeiculos}}
+            </mat-list-item>
+          </mat-list>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Distribuição de veículos por fabricante">
+        <section class="tab">
+          <mat-list role="list">
+            <mat-list-item *ngFor="let veiculoPorFabricante of veiculosPorFabricante" class="text-center mat-item-border">
+              {{veiculoPorFabricante.marca}} - {{veiculoPorFabricante.numeroVeiculos}}
+            </mat-list-item>
+          </mat-list>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Registrados na última semana">
+        <section class="tab">
+          <mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+            <ng-container matColumnDef="veiculo">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Veículo </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.veiculo}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="marca">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Marca </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.marca}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ano">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Ano </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.ano}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="descricao">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Descricao </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.descricao}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="vendido">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Vendido </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.vendido ? 'SIM' : 'NÃO'}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="criacao">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Criação </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.created}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="atualizacao">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Atualização </mat-header-cell>
+              <mat-cell *matCellDef="let veiculo"> {{veiculo.updated}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
+        </section>
+      </mat-tab>
+
+
+    </mat-tab-group>
+  </mat-card>
+</section>
