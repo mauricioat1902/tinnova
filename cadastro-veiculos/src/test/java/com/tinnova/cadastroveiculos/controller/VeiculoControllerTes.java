@@ -20,8 +20,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -50,14 +49,21 @@ public class VeiculoControllerTes {
     }
 
     @Test
-    public void deveRetornarSucesso_QuandoBuscarVeiculo() throws Exception {
+    public void deveRetornarOk_QuandoBuscarVeiculo() throws Exception {
         when(this.service.findById(1L)).thenReturn(this.veiculo);
         mockMvc.perform(get(BASE_URL + "/1"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deveRetornarSucesso_QuandoBuscarVeiculoS() throws Exception {
+    public void deveRetornarNoContent_QuandoBuscarVeiculo() throws Exception {
+        when(this.service.findById(1L)).thenReturn(null);
+        mockMvc.perform(get(BASE_URL + "/1"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void deveRetornarOk_QuandoBuscarTodosVeiculos() throws Exception {
         List<Veiculo> veiculos = Arrays.asList(new Veiculo(), new Veiculo());
         when(this.service.findAll()).thenReturn(veiculos);
         mockMvc.perform(get(BASE_URL))
@@ -74,6 +80,52 @@ public class VeiculoControllerTes {
         ).andExpect(status().isCreated());
     }
 
+    @Test
+    public void deveRetornarOk_QuandoAtualizarVeiculo() throws Exception {
+        when(service.findById(any())).thenReturn(this.veiculo);
+        when(this.service.save(any(Veiculo.class))).thenReturn(this.veiculo);
+        mockMvc.perform(
+                put(BASE_URL + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(Util.asJsonString(this.veiculoEntradaDTO))
+        ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void deveRetornarNotContent_QuandoAtualizarVeiculoInexistente() throws Exception {
+        when(service.findById(any())).thenReturn(null);
+        when(this.service.save(any(Veiculo.class))).thenReturn(this.veiculo);
+        mockMvc.perform(
+                put(BASE_URL + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(Util.asJsonString(this.veiculoEntradaDTO))
+        ).andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void deveRetornarOk_QuandoAtualizarParcialmenteVeiculo() throws Exception {
+        when(service.findById(any())).thenReturn(this.veiculo);
+        when(service.save(any(Veiculo.class))).thenReturn(this.veiculo);
+        when(service.partialUpdate(any(Veiculo.class), any(VeiculoEntradaDTO.class))).thenReturn(this.veiculo);
+        mockMvc.perform(
+                patch(BASE_URL + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(Util.asJsonString(this.veiculoEntradaDTO))
+        ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void deveRetornarNoContent_QuandoAtualizarParcialmenteVeiculo() throws Exception {
+        when(service.findById(any())).thenReturn(null);
+        when(service.save(any(Veiculo.class))).thenReturn(this.veiculo);
+        when(service.partialUpdate(any(Veiculo.class), any(VeiculoEntradaDTO.class))).thenReturn(this.veiculo);
+        mockMvc.perform(
+                patch(BASE_URL + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(Util.asJsonString(this.veiculoEntradaDTO))
+        ).andExpect(status().isNoContent());
+    }
+
     /**
      * Teste com o nome da marca inválida
      * @throws Exception
@@ -88,4 +140,11 @@ public class VeiculoControllerTes {
                 .content(Util.asJsonString(veiculoTest))
         ).andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void deveRetornarOk_QuandoDeletarVeiculo() throws Exception {
+        mockMvc.perform(delete(BASE_URL + "/1"))
+                .andExpect(status().isOk());
+    }
+    
 }
