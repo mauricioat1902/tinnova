@@ -2,7 +2,9 @@ package com.tinnova.cadastroveiculos.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tinnova.cadastroveiculos.validation.ValidaMarca;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
 /**
  * Classe de entrada aos serviços de veículo
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class VeiculoSaidaDTO {
 
     private Long id;

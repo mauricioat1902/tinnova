@@ -1,7 +1,9 @@
 package com.tinnova.cadastroveiculos.dto;
 
 import com.tinnova.cadastroveiculos.validation.ValidaMarca;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -12,6 +14,8 @@ import javax.validation.constraints.NotNull;
 /**
  * Classe de saida aos serviços de veículo
  */
+@NoArgsConstructor
+@AllArgsConstructor
 public class VeiculoEntradaDTO {
 
     private Long id;
