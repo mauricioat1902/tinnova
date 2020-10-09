@@ -35,3 +35,9 @@ Para executar o front é necessário:<br />
 Executar os comandos:<br />
 - npm install<br />
 - ng serve --open<br />
+
+O front-end possui o cadastro, edição e exclusão de veículos. Nele também é possível obter os seguintes dados:<br />
+-Nº Veículos não vendidos<br />
+-Distribuição de veículos por década<br />
+-Distribuição de veículos por fabricante<br />
+-Registrados na última semana<br />
