@@ -5,12 +5,12 @@
 Contém a resolução dos exercícios 1, 2, 3 e 4.<br />
 Execução:<br />
 Execute em uma IDE de preferência (ex: IntelliJ, Eclipse). O sistema irá exibir as opções de qual exercício executar. Segue o exemplo:<br />
-  Qual exercício deseja executar? (Digite o número)<br />
+  <i>Qual exercício deseja executar? (Digite o número)<br />
   (1) - Votos em relação ao total de eleitores<br />
   (2) - Algoritmo de odenação Bubble Sorte<br />
   (3) - Fatorial<br />
   (4) - Soma dos múltiplos de 3 ou 5<br />
-  (5) - Sair<br />
+  (5) - Sair<br /></i>
  
 Ao término de cada exercício o programa volta a exibir as opções. Ao selecionar a opção 5 o programa irá finalizar sua execução.<br />
 OBS: Alguns exercícios possuem dados de premissa conforme a descrição do exercício no arquivo pdf.<br />
